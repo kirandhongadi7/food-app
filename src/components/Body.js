@@ -1,5 +1,6 @@
 import RestaurantCard from "./RestaurantCard";
 import { useEffect, useState } from "react";
+import Shimmer from "./Shimmer";
 
 const Body =() =>{
   const[restaurants,setRestaurants] = useState([]);
@@ -35,7 +36,8 @@ const topRatedRest =() =>{
   } );
 }
 
-  return(
+  return restaurants.length === 0? <Shimmer/>:
+  (
     <>
     <div className="mt-2  m-7">body
        <div>serach</div> 

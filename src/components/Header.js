@@ -1,5 +1,10 @@
+import { useState } from "react";
 
 const Header =() =>{
+  const[toggle,setToggle] = useState(1);
+  const toggleLogin =()=>{
+     return setToggle(!toggle);
+  }
   return(
     <>
     <nav className="bg-gradient-to-r from-orange-700 via-orange-600 to-amber-500 flex justify-between items-center px-6 py-3 shadow-md rounded-b-2xl">
@@ -20,6 +25,10 @@ const Header =() =>{
       <li className="hover:text-gray-200 cursor-pointer transition">About</li>
       <li className="hover:text-gray-200 cursor-pointer transition">Menu</li>
       <li className="hover:text-gray-200 cursor-pointer transition">Contact</li>
+      <button className="hover:text-gray-200 cursor-pointer shadow-md transition-all duration-300 ease-in-out 
+             active:scale-95" onClick={toggleLogin}>
+        {toggle? "login":"logout"}</button>
+
     </ul>
   </div>
 </nav>
