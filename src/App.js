@@ -10,7 +10,7 @@ const App = () => {
   
   return(
     <> 
-    <div className="bg-[#1E1B18]">
+    <div >
       <Header/>
       <Body />
     </div>

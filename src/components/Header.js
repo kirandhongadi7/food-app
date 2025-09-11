@@ -3,7 +3,7 @@ import { useState } from "react";
 const Header =() =>{
   const[toggle,setToggle] = useState(1);
   const toggleLogin =()=>{
-     return setToggle(!toggle);
+     return setToggle(prev => !prev);
   }
   return(
     <>
