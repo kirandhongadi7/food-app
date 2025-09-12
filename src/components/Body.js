@@ -25,10 +25,10 @@ const Body = () => {
     
 
     setRestaurants(
-      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants ||[]
+      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants || []
     );
     setTempRestaurants(
-      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants || []
+      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants || {}
     );
     setFiltering(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants || []);
   };
@@ -49,9 +49,12 @@ const Body = () => {
 
  
   //  returing the body
-  return restaurants.length === 0 ? (
-    <Shimmer />
-  ) : (
+  if (!restaurants || restaurants.length === 0) {
+  return <Shimmer />;
+}
+
+
+   return(
     <>
       <div className="mt-2  m-7">
         {/*Search feature  it will modify everytime when we write anyting in search bar*/}
@@ -109,10 +112,11 @@ const Body = () => {
         </button>
         
         <div className="res-container flex flex-wrap">
-          {restaurants.map((res) => (
-            <RestaurantCard key={res.info.id} resData={res.info} />
-          ))}
-        </div>
+  {restaurants.map((res) => (
+    <RestaurantCard key={res.info.id} resData={res.info} />
+  ))}
+</div>
+
       </div>
       
       
