@@ -1,26 +1,28 @@
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import { useParams } from "react-router-dom";
+import useRestaurantMenu from "../utils/useRestaurantMenu";
 
 const RestaurantMenu = () => {
-  const [resInfo, setResInfo] = useState(null);
+  // const [resInfo, setResInfo] = useState(null);
   const { resId } = useParams();
+  // Created custom Hooks
+  const resInfo = useRestaurantMenu(resId);
+  // useEffect(() => {
+  //   fetchData();
+  // }, []);
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  const fetchData = async () => {
-    try {
-      const data = await fetch(
-        `https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=12.9715987&lng=77.5945627&restaurantId=${resId}`
-      );
-      const json = await data.json();
-      setResInfo(json);
-    } catch (err) {
-      console.error("Error fetching menu:", err);
-    }
-  };
+  // const fetchData = async () => {
+  //   try {
+  //     const data = await fetch(
+  //       `https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=12.9715987&lng=77.5945627&restaurantId=${resId}`
+  //     );
+  //     const json = await data.json();
+  //     setResInfo(json);
+  //   } catch (err) {
+  //     console.error("Error fetching menu:", err);
+  //   }
+  // };
 
   // Show shimmer until API loads
   if (!resInfo?.data) {
