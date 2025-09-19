@@ -2,6 +2,7 @@ import RestaurantCard from "./RestaurantCard";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Body = () => {
   const [restaurants, setRestaurants] = useState([]);
@@ -46,7 +47,21 @@ const Body = () => {
     });
   };
 
- 
+if (useOnlineStatus() === false) {
+    return (
+      <div className="flex items-center justify-center h-screen ">
+        <div className="text-center p-6 bg-white/10 backdrop-blur-md rounded-2xl shadow-lg">
+          <div className="text-5xl mb-4">⚠️</div>
+          <h1 className="text-white text-2xl font-bold">
+            No Internet Connection
+          </h1>
+          <p className="text-gray-300 mt-2">
+            Please check your connection and try again.
+          </p>
+        </div>
+      </div>
+    );
+  }
   //  returing the body
   if (!restaurants || restaurants.length === 0) {
   return <Shimmer />;
