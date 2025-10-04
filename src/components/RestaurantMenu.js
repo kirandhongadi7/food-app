@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import { useParams } from "react-router-dom";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
+import RestaurantCategory from "./RestaurantCategory";
 
 const RestaurantMenu = () => {
   // const [resInfo, setResInfo] = useState(null);
@@ -46,6 +47,19 @@ const RestaurantMenu = () => {
       ?.find((card) => card.groupedCard)?.groupedCard?.cardGroupMap?.REGULAR
       ?.cards?.flatMap((c) => c.card?.card?.itemCards || []) || [];
 
+      console.log(resInfo?.data?.cards
+      ?.find((card) => card.groupedCard)?.groupedCard?.cardGroupMap?.REGULAR
+      ?.cards);
+
+      const categories = resInfo?.data?.cards
+      ?.find((card) => card.groupedCard)?.groupedCard?.cardGroupMap?.REGULAR
+      ?.cards.filter(c => c.card?.card?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory") || [];
+
+      console.log(categories);
+      
+    
+      
+
   return (
     <div className="text-white px-6 py-8 min-h-screen bg-gradient-to-br from-[#1f1f1f] via-[#2a2a2a] to-[#1a1a1a]">
       {/* Restaurant Info */}
@@ -73,9 +87,15 @@ const RestaurantMenu = () => {
           </div>
         </div>
       </div>
-
+            {/* according */}
+            <div>
+                 {console.log(categories)
+                 }
+                {categories.map((item,i) =>   <div key={i}><RestaurantCategory  item ={item}/> </div>)}
+                 
+            </div>
       {/* Menu Section */}
-      <h2 className="text-2xl font-bold mb-4 border-b border-gray-600 pb-2">🍴 Menu</h2>
+      {/* <h2 className="text-2xl font-bold mb-4 border-b border-gray-600 pb-2">🍴 Menu</h2>
       <ul className="space-y-3 max-h-[500px] overflow-y-auto pr-2">
         {itemCards.length > 0 ? (
           itemCards.map((item, i) => (
@@ -92,7 +112,7 @@ const RestaurantMenu = () => {
         ) : (
           <p className="text-gray-400">Menu not available</p>
         )}
-      </ul>
+      </ul> */}
     </div>
   );
 };

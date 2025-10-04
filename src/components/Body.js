@@ -31,6 +31,8 @@ const Body = () => {
       json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants || {}
     );
     setFiltering(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants || []);
+    console.log(restaurants);
+    
   };
   //Toggle logic to show {top rated restorant} and {show all restorants}
   // First create state then onClich change the value {!prev}

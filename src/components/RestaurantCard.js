@@ -1,3 +1,4 @@
+
 const RestaurantCard =({resData}) =>{
   // const{resName,cuisines} = props
   return(
