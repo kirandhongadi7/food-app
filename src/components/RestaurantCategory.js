@@ -15,7 +15,7 @@ const RestaurantCategory = ({ item ,showItems,setShowIndex}) => {
         <p>▼</p>
       </div>
       {/* {acortind} */}
-      {console.log(item?.card?.card?.itemCards)}
+      
       
      {showItems && <ItemList items={item?.card?.card?.itemCards} />}
     </div>
